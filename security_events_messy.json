@@ -1,0 +1,1492 @@
+{
+  "organization": "Nordic Shield Services",
+  "generated_at": "2026-10-12T17:00:00",
+  "source": "training-soc-messy",
+  "events": [
+    {
+      "event_id": 4,
+      "timestamp": "2026-10-12T07:36:48",
+      "event_type": "web_request",
+      "severity": "info",
+      "host": "web01",
+      "source_ip": "10.10.8.51",
+      "username": "felix",
+      "details": {
+        "path": "/login",
+        "status": 200
+      }
+    },
+    {
+      "event_id": 50,
+      "timestamp": "2026-10-12T07:38:42",
+      "event_type": "web_request",
+      "severity": "info",
+      "host": "web01",
+      "source_ip": "10.10.4.21",
+      "username": "carla",
+      "details": {
+        "path": "/login",
+        "status": 200
+      }
+    },
+    {
+      "event_id": 19,
+      "timestamp": "2026-10-12T07:41:43",
+      "event_type": "web_request",
+      "severity": "info",
+      "host": "web02",
+      "source_ip": "192.168.20.15",
+      "username": "felix",
+      "details": {
+        "path": "/login",
+        "status": 200
+      }
+    },
+    {
+      "event_id": 30,
+      "timestamp": "2026-10-12T08:02:55",
+      "event_type": "file_access",
+      "severity": "low",
+      "host": "files01",
+      "source_ip": "10.10.4.34",
+      "details": {
+        "path": "/home/emma/notes.txt",
+        "action": "read"
+      }
+    },
+    {
+      "event_id": 57,
+      "timestamp": "2026-10-12T08:10:57",
+      "event_type": "file_access",
+      "severity": "low",
+      "host": "ws-104",
+      "source_ip": "10.10.4.34",
+      "username": "felix",
+      "details": {
+        "path": "/shared/hr/policies.pdf",
+        "action": "read"
+      }
+    },
+    {
+      "event_id": 17,
+      "timestamp": "2026-10-12T08:18:55",
+      "event_type": "login_success",
+      "severity": "low",
+      "host": "ws-117",
+      "source_ip": "10.10.4.34",
+      "username": "felix",
+      "details": {
+        "auth_method": "mfa"
+      }
+    },
+    {
+      "event_id": 37,
+      "timestamp": "2026-10-12T08:21:41",
+      "event_type": "logout",
+      "severity": "info",
+      "host": "ws-117",
+      "source_ip": "10.10.4.21",
+      "username": "anna"
+    },
+    {
+      "event_id": 120,
+      "timestamp": "2026-10-12T08:25:00",
+      "event_type": "login_failed",
+      "severity": "low",
+      "host": "vpn01",
+      "username": "anna",
+      "details": {
+        "reason": "mistyped_password"
+      }
+    },
+    {
+      "event_id": 43,
+      "timestamp": "2026-10-12T08:28:32",
+      "event_type": "login_success",
+      "severity": "low",
+      "host": "vpn01",
+      "source_ip": "10.10.4.21",
+      "username": "bo",
+      "details": {
+        "auth_method": "password"
+      }
+    },
+    {
+      "event_id": 39,
+      "timestamp": "2026-10-12T08:30:10",
+      "event_type": "file_access",
+      "severity": "low",
+      "host": "ws-117",
+      "source_ip": "10.10.7.12",
+      "username": "",
+      "details": {
+        "path": "/shared/projects/status.txt",
+        "action": "read"
+      }
+    },
+    {
+      "event_id": 18,
+      "timestamp": "2026-10-12T08:35:24",
+      "event_type": "file_access",
+      "severity": "low",
+      "host": "files01",
+      "source_ip": "192.168.20.15",
+      "username": "david",
+      "details": {
+        "path": "/home/david/notes.txt",
+        "action": "read"
+      }
+    },
+    {
+      "event_id": 8,
+      "timestamp": "2026-10-12T08:41:02",
+      "event_type": "web_request",
+      "severity": "info",
+      "host": "web01",
+      "source_ip": "10.10.4.21",
+      "details": {
+        "path": "/products",
+        "status": 200
+      }
+    },
+    {
+      "event_id": 47,
+      "timestamp": "2026-10-12T08:44:00",
+      "event_type": "file_access",
+      "severity": "low",
+      "host": "web01",
+      "source_ip": "10.10.4.21",
+      "username": "emma",
+      "details": {
+        "path": "/home/emma/notes.txt",
+        "action": "read"
+      }
+    },
+    {
+      "event_id": 45,
+      "timestamp": "2026-10-12T08:53:26",
+      "event_type": "web_request",
+      "severity": "info",
+      "host": "web01",
+      "source_ip": "192.168.20.15",
+      "username": "emma",
+      "details": {
+        "path": "/login",
+        "status": 200
+      }
+    },
+    {
+      "event_id": 53,
+      "timestamp": "2026-10-12T09:04:40",
+      "event_type": "file_access",
+      "severity": "low",
+      "host": "web01",
+      "source_ip": "10.10.4.21",
+      "username": "carla",
+      "details": {
+        "path": "/shared/projects/status.txt",
+        "action": "read"
+      }
+    },
+    {
+      "event_id": 34,
+      "timestamp": "2026-10-12T09:10:03",
+      "event_type": "file_access",
+      "severity": "low",
+      "host": "web02",
+      "source_ip": "10.10.4.21",
+      "username": "carla",
+      "details": {
+        "path": "/shared/hr/policies.pdf",
+        "action": "read"
+      }
+    },
+    {
+      "event_id": 51,
+      "timestamp": "2026-10-12T09:19:47",
+      "event_type": "web_request",
+      "severity": "unknown",
+      "host": "web02",
+      "source_ip": "10.10.7.12",
+      "username": "carla",
+      "details": {
+        "path": "/products",
+        "status": 200
+      }
+    },
+    {
+      "event_id": 1,
+      "timestamp": "2026-10-12T09:24:01",
+      "event_type": "web_request",
+      "severity": "info",
+      "host": "web01",
+      "source_ip": "10.10.4.34",
+      "username": "bo",
+      "details": {
+        "path": "/",
+        "status": 200
+      }
+    },
+    {
+      "event_id": 20,
+      "timestamp": "2026-10-12T09:24:18",
+      "event_type": "file_access",
+      "severity": "low",
+      "host": "ws-104",
+      "source_ip": "10.10.4.21",
+      "username": "david",
+      "details": {
+        "path": "/home/david/notes.txt",
+        "action": "read"
+      }
+    },
+    {
+      "event_id": 71,
+      "timestamp": "2026-10-12T09:30:00",
+      "event_type": "login_failed",
+      "severity": "medium",
+      "host": "vpn01",
+      "username": "service_backup",
+      "details": {
+        "reason": "invalid_credentials"
+      }
+    },
+    {
+      "event_id": 72,
+      "timestamp": "2026-10-12T09:32:00",
+      "event_type": "login_failed",
+      "severity": "medium",
+      "host": "vpn01",
+      "source_ip": "185.23.44.17",
+      "username": "anna",
+      "details": {
+        "reason": "invalid_credentials"
+      }
+    },
+    {
+      "event_id": 73,
+      "timestamp": "2026-10-12T09:34:00",
+      "event_type": "login_failed",
+      "severity": "medium",
+      "host": "vpn01",
+      "source_ip": "185.23.44.17",
+      "username": "anna",
+      "details": {
+        "reason": "invalid_credentials"
+      }
+    },
+    {
+      "event_id": 74,
+      "timestamp": "2026-10-12T09:36:00",
+      "event_type": "login_failed",
+      "severity": "HIGH",
+      "host": "vpn01",
+      "source_ip": "185.23.44.17",
+      "username": "service_backup",
+      "details": {
+        "reason": "invalid_credentials"
+      }
+    },
+    {
+      "event_id": 68,
+      "timestamp": "2026-10-12T09:37:46",
+      "event_type": "logout",
+      "severity": "info",
+      "host": "ws-104",
+      "source_ip": "10.10.7.12",
+      "username": "emma"
+    },
+    {
+      "event_id": 75,
+      "timestamp": "2026-10-12T09:38:00",
+      "event_type": "login_failed",
+      "severity": "medium",
+      "host": "vpn01",
+      "source_ip": "185.23.44.17",
+      "username": "admin",
+      "details": {
+        "reason": "invalid_credentials"
+      }
+    },
+    {
+      "event_id": 25,
+      "timestamp": "2026-10-12T09:38:08",
+      "event_type": "web_request",
+      "severity": "info",
+      "host": "web02",
+      "source_ip": "10.10.4.34",
+      "details": {
+        "path": "/api/status",
+        "status": 200
+      }
+    },
+    {
+      "event_id": 76,
+      "timestamp": "2026-10-12T09:40:00",
+      "event_type": "login_failed",
+      "severity": "medium",
+      "host": "vpn01",
+      "source_ip": "185.23.44.17",
+      "username": "anna",
+      "details": {
+        "reason": "invalid_credentials"
+      }
+    },
+    {
+      "event_id": 77,
+      "timestamp": "2026-10-12T09:42:00",
+      "event_type": "login_failed",
+      "severity": "medium",
+      "host": "vpn01",
+      "source_ip": "185.23.44.17",
+      "username": "anna",
+      "details": {
+        "reason": "invalid_credentials"
+      }
+    },
+    {
+      "event_id": 54,
+      "timestamp": "2026-10-12T09:43:40",
+      "event_type": "logout",
+      "severity": "info",
+      "host": "vpn01",
+      "source_ip": "10.10.8.51",
+      "username": "bo"
+    },
+    {
+      "event_id": 78,
+      "timestamp": "2026-10-12T09:44:00",
+      "event_type": "login_failed",
+      "severity": "medium",
+      "host": "vpn01",
+      "source_ip": "185.23.44.17",
+      "username": "admin",
+      "details": {
+        "reason": "invalid_credentials"
+      }
+    },
+    {
+      "event_id": 79,
+      "timestamp": "2026-10-12T09:46:00",
+      "event_type": "login_failed",
+      "severity": "medium",
+      "host": "vpn01",
+      "source_ip": "185.23.44.17",
+      "username": "anna",
+      "details": {
+        "reason": "invalid_credentials"
+      }
+    },
+    {
+      "event_id": 80,
+      "timestamp": "2026-10-12T09:48:00",
+      "event_type": "login_failed",
+      "severity": "medium",
+      "host": null,
+      "source_ip": "185.23.44.17",
+      "username": "service_backup",
+      "details": {
+        "reason": "invalid_credentials"
+      }
+    },
+    {
+      "event_id": 81,
+      "timestamp": "2026-10-12T09:50:00",
+      "event_type": "login_failed",
+      "severity": "medium",
+      "host": "vpn01",
+      "source_ip": "185.23.44.17",
+      "username": "service_backup",
+      "details": {
+        "reason": "invalid_credentials"
+      }
+    },
+    {
+      "event_id": 82,
+      "timestamp": "2026-10-12T09:52:00",
+      "event_type": "login_failed",
+      "severity": "medium",
+      "host": "vpn01",
+      "source_ip": "185.23.44.17",
+      "username": "service_backup",
+      "details": {
+        "reason": "invalid_credentials"
+      }
+    },
+    {
+      "event_id": 119,
+      "timestamp": "2026-10-12T09:52:00",
+      "event_type": "login_failed",
+      "severity": "low",
+      "host": "web02",
+      "source_ip": "192.168.20.15",
+      "username": "david",
+      "details": {
+        "reason": "mistyped_password"
+      }
+    },
+    {
+      "event_id": 15,
+      "timestamp": "2026-10-12T09:52:15",
+      "event_type": "web_request",
+      "severity": "info",
+      "host": "web02",
+      "source_ip": "10.10.7.12",
+      "username": "emma",
+      "details": {
+        "path": "/api/status",
+        "status": 200
+      }
+    },
+    {
+      "event_id": 83,
+      "timestamp": "2026-10-12T09:54:00",
+      "event_type": "login_failed",
+      "severity": "medium",
+      "host": "vpn01",
+      "source_ip": "185.23.44.17",
+      "username": "anna",
+      "details": {
+        "reason": "invalid_credentials"
+      }
+    },
+    {
+      "event_id": 84,
+      "timestamp": "2026-10-12T09:56:00",
+      "event_type": "login-failed",
+      "severity": "medium",
+      "host": "vpn01",
+      "source_ip": "185.23.44.17",
+      "username": "anna",
+      "details": {
+        "reason": "invalid_credentials"
+      }
+    },
+    {
+      "event_id": 85,
+      "timestamp": "2026-10-12T09:58:00",
+      "event_type": "login_failed",
+      "severity": "medium",
+      "host": "vpn01",
+      "source_ip": "185.23.44.17",
+      "username": "anna",
+      "details": {
+        "reason": "invalid_credentials"
+      }
+    },
+    {
+      "event_id": 86,
+      "timestamp": "2026-10-12T10:00:00",
+      "event_type": "login_failed",
+      "severity": "medium",
+      "host": "vpn01",
+      "source_ip": "185.23.44.17",
+      "username": "anna",
+      "details": {
+        "reason": "invalid_credentials"
+      }
+    },
+    {
+      "event_id": 87,
+      "timestamp": "2026-10-12T10:02:00",
+      "event_type": "login_failed",
+      "severity": "medium",
+      "host": "vpn01",
+      "source_ip": "185.23.44.17",
+      "username": "service_backup",
+      "details": {
+        "reason": "invalid_credentials"
+      }
+    },
+    {
+      "event_id": 88,
+      "timestamp": "2026-10-12T10:04:00",
+      "event_type": "login_failed",
+      "severity": "medium",
+      "host": "vpn01",
+      "source_ip": "185.23.44.17",
+      "username": "admin",
+      "details": {
+        "reason": "invalid_credentials"
+      }
+    },
+    {
+      "event_id": 89,
+      "timestamp": "2026-10-12T10:06:00",
+      "event_type": "login_failed",
+      "severity": "medium",
+      "host": "vpn01",
+      "source_ip": "185.23.44.17",
+      "username": "service_backup",
+      "details": {
+        "reason": "invalid_credentials"
+      }
+    },
+    {
+      "event_id": 22,
+      "timestamp": "2026-10-12T10:06:23",
+      "event_type": "web_request",
+      "severity": "info",
+      "host": "web02",
+      "source_ip": "192.168.20.15",
+      "username": "emma",
+      "details": {
+        "path": "/api/status",
+        "status": 200
+      }
+    },
+    {
+      "event_id": 90,
+      "timestamp": "2026-10-12T10:08:00",
+      "event_type": "login_failed",
+      "severity": "medium",
+      "host": "vpn01",
+      "source_ip": "not-an-ip",
+      "username": "anna",
+      "details": {
+        "reason": "invalid_credentials"
+      }
+    },
+    {
+      "event_id": 91,
+      "timestamp": "2026-10-12T10:10:00",
+      "event_type": "login_failed",
+      "severity": "medium",
+      "host": "vpn01",
+      "source_ip": "185.23.44.17",
+      "username": "service_backup",
+      "details": {
+        "reason": "invalid_credentials"
+      }
+    },
+    {
+      "event_id": 92,
+      "timestamp": "2026-10-12T10:12:00",
+      "event_type": "login_failed",
+      "severity": "medium",
+      "host": "vpn01",
+      "source_ip": "185.23.44.17",
+      "username": "admin",
+      "details": {
+        "reason": "invalid_credentials"
+      }
+    },
+    {
+      "event_id": 59,
+      "timestamp": "2026-10-12T10:16:51",
+      "event_type": "web_request",
+      "severity": "info",
+      "host": "web02",
+      "source_ip": "10.10.4.21",
+      "username": "david",
+      "details": {
+        "path": "/login",
+        "status": 200
+      }
+    },
+    {
+      "event_id": 66,
+      "timestamp": "2026-10-12T10:44:16",
+      "event_type": "login_success",
+      "severity": "low",
+      "host": "vpn01",
+      "source_ip": "10.10.4.21",
+      "username": "david",
+      "details": {
+        "auth_method": "password"
+      }
+    },
+    {
+      "event_id": 41,
+      "timestamp": "2026-10-12T10:44:18",
+      "event_type": "login_success",
+      "severity": "low",
+      "host": "ws-104",
+      "source_ip": "192.168.20.15",
+      "username": "anna",
+      "details": {
+        "auth_method": "password"
+      }
+    },
+    {
+      "event_id": 35,
+      "timestamp": "2026-10-12T10:44:34",
+      "event_type": "file_access",
+      "severity": "low",
+      "host": "files01",
+      "source_ip": "10.10.4.34",
+      "username": "david",
+      "details": {}
+    },
+    {
+      "event_id": 3,
+      "timestamp": "2026-10-12T10:53:45",
+      "event_type": "web_request",
+      "severity": "info",
+      "host": "web02",
+      "source_ip": "10.10.8.51",
+      "username": "emma",
+      "details": {
+        "path": "/help",
+        "status": 200
+      }
+    },
+    {
+      "event_id": 52,
+      "timestamp": "2026-10-12T10:58:43",
+      "event_type": "web_request",
+      "severity": "info",
+      "host": "web01",
+      "source_ip": "192.168.20.15",
+      "username": "carla",
+      "details": {
+        "path": "/login",
+        "status": 200
+      }
+    },
+    {
+      "event_id": 10,
+      "timestamp": "2026-10-12T11:04:42",
+      "event_type": "login_success",
+      "severity": "low",
+      "host": "vpn01",
+      "source_ip": "10.10.4.21",
+      "username": "felix",
+      "details": {
+        "auth_method": "password"
+      }
+    },
+    {
+      "event_id": 26,
+      "timestamp": "2026-10-12T11:06:59",
+      "event_type": "web_request",
+      "severity": "info",
+      "host": "web02",
+      "source_ip": "10.10.4.34",
+      "username": "felix",
+      "details": {
+        "path": "/login",
+        "status": 200
+      }
+    },
+    {
+      "event_id": 48,
+      "timestamp": "2026-10-12T11:08:32",
+      "event_type": "login_success",
+      "severity": "low",
+      "host": "web02",
+      "source_ip": "10.10.4.21",
+      "username": "carla",
+      "details": {
+        "auth_method": "mfa"
+      }
+    },
+    {
+      "event_id": 5,
+      "timestamp": "2026-10-12T11:10:48",
+      "event_type": "file_access",
+      "severity": "low",
+      "host": "web01",
+      "source_ip": "10.10.8.51",
+      "username": "anna",
+      "details": {
+        "path": "/shared/projects/status.txt",
+        "action": "read"
+      }
+    },
+    {
+      "event_id": 29,
+      "timestamp": "2026-10-12T11:15:00",
+      "event_type": "login_success",
+      "severity": "low",
+      "host": "web02",
+      "source_ip": "10.10.4.21",
+      "username": "felix",
+      "details": {
+        "auth_method": "password"
+      }
+    },
+    {
+      "event_id": 62,
+      "timestamp": "2026/10/12 12:15:00",
+      "event_type": "web_request",
+      "severity": "info",
+      "host": "web02",
+      "source_ip": "10.10.7.12",
+      "username": "david",
+      "details": {
+        "path": "/",
+        "status": 200
+      }
+    },
+    {
+      "event_id": 28,
+      "timestamp": "2026-10-12T11:20:04",
+      "event_type": "file_access",
+      "severity": "low",
+      "host": "web02",
+      "source_ip": "192.168.20.15",
+      "username": "emma",
+      "details": {
+        "path": "/home/emma/notes.txt",
+        "action": "read"
+      }
+    },
+    {
+      "event_id": 117,
+      "timestamp": "2026-10-12T11:24:00",
+      "event_type": "login_failed",
+      "severity": "low",
+      "host": "web02",
+      "source_ip": "10.10.4.34",
+      "username": "felix",
+      "details": {
+        "reason": "mistyped_password"
+      }
+    },
+    {
+      "event_id": 93,
+      "timestamp": "2026-10-12T11:30:00",
+      "event_type": "login_failed",
+      "severity": "medium",
+      "host": "web01",
+      "source_ip": "203.0.113.77",
+      "username": "admin",
+      "details": {
+        "reason": "invalid_credentials"
+      }
+    },
+    {
+      "event_id": 44,
+      "timestamp": "2026-10-12T11:30:25",
+      "event_type": "login_success",
+      "severity": "low",
+      "host": "vpn01",
+      "source_ip": "10.10.4.34",
+      "username": "emma",
+      "details": {
+        "auth_method": "password"
+      }
+    },
+    {
+      "event_id": 38,
+      "timestamp": "2026-10-12T11:32:10",
+      "event_type": "file_access",
+      "severity": "low",
+      "host": "ws-117",
+      "source_ip": "10.10.4.34",
+      "username": "david",
+      "details": {
+        "path": "/shared/projects/status.txt",
+        "action": "read"
+      }
+    },
+    {
+      "event_id": 94,
+      "timestamp": "2026-10-12T11:35:00",
+      "event_type": "login_failed",
+      "severity": "medium",
+      "host": "web01",
+      "source_ip": "203.0.113.77",
+      "username": "admin",
+      "details": {
+        "reason": "invalid_credentials"
+      }
+    },
+    {
+      "event_id": 24,
+      "timestamp": "2026-10-12T11:36:56",
+      "event_type": "web_request",
+      "severity": "info",
+      "host": "web01",
+      "source_ip": "10.10.4.21",
+      "username": "anna",
+      "details": {
+        "path": "/help",
+        "status": 200
+      }
+    },
+    {
+      "event_id": 95,
+      "timestamp": "2026-10-12T11:40:00",
+      "event_type": "login_failed",
+      "severity": "medium",
+      "host": "web01",
+      "source_ip": "203.0.113.77",
+      "username": "admin",
+      "details": {
+        "reason": "invalid_credentials"
+      }
+    },
+    {
+      "event_id": 11,
+      "timestamp": "2026-10-12T11:40:10",
+      "event_type": "file_access",
+      "severity": "low",
+      "host": "web02",
+      "source_ip": "192.168.20.15",
+      "username": "carla",
+      "details": {
+        "path": "/home/carla/notes.txt",
+        "action": "read"
+      }
+    },
+    {
+      "event_id": 60,
+      "timestamp": "2026-10-12T11:44:17",
+      "event_type": "login_success",
+      "severity": "low",
+      "host": "db01",
+      "source_ip": "10.10.4.21",
+      "username": "felix",
+      "details": {
+        "auth_method": "password"
+      }
+    },
+    {
+      "event_id": 96,
+      "timestamp": "2026-10-12T11:45:00",
+      "event_type": "login_failed",
+      "severity": "medium",
+      "host": "web01",
+      "source_ip": "203.0.113.77",
+      "username": "admin",
+      "details": {
+        "reason": "invalid_credentials"
+      }
+    },
+    {
+      "event_id": 36,
+      "timestamp": "2026-10-12T11:45:55",
+      "event_type": "logout",
+      "severity": "info",
+      "host": "web01",
+      "source_ip": "192.168.20.15",
+      "username": "david"
+    },
+    {
+      "event_id": 97,
+      "timestamp": "2026-10-12T11:50:00",
+      "event_type": "login_failed",
+      "severity": "medium",
+      "host": "web01",
+      "source_ip": "203.0.113.77",
+      "username": "admin",
+      "details": {
+        "reason": "invalid_credentials"
+      }
+    },
+    {
+      "event_id": 98,
+      "timestamp": "2026-10-12T11:55:00",
+      "event_type": "login_failed",
+      "severity": "medium",
+      "host": "web01",
+      "source_ip": "203.0.113.77",
+      "username": "admin",
+      "details": {
+        "reason": "invalid_credentials"
+      }
+    },
+    {
+      "event_id": 64,
+      "timestamp": "2026-10-12T11:57:11",
+      "event_type": "web_request",
+      "severity": "info",
+      "host": "web02",
+      "source_ip": "10.10.4.21",
+      "username": "carla",
+      "details": {
+        "path": "/api/status",
+        "status": 200
+      }
+    },
+    {
+      "event_id": 21,
+      "timestamp": "2026-10-12T11:59:32",
+      "event_type": "web_request",
+      "severity": "info",
+      "host": "web01",
+      "source_ip": "10.10.4.21",
+      "username": "emma",
+      "details": {
+        "path": "/login",
+        "status": 200
+      }
+    },
+    {
+      "event_id": 99,
+      "timestamp": "2026-10-12T12:00:00",
+      "event_type": "login_failed",
+      "severity": "medium",
+      "host": "web01",
+      "source_ip": "203.0.113.77",
+      "username": "admin",
+      "details": {
+        "reason": "invalid_credentials"
+      }
+    },
+    {
+      "event_id": 49,
+      "timestamp": "2026-10-12T12:21:10",
+      "event_type": "file_access",
+      "severity": "low",
+      "host": "vpn01",
+      "source_ip": "10.10.7.12",
+      "username": "emma",
+      "details": {
+        "path": "/home/emma/notes.txt",
+        "action": "read"
+      }
+    },
+    {
+      "event_id": 40,
+      "timestamp": "2026-10-12T12:22:27",
+      "event_type": "web_request",
+      "severity": "info",
+      "host": "web01",
+      "source_ip": "192.168.20.15",
+      "username": "felix",
+      "details": {
+        "path": "/help",
+        "status": 200
+      }
+    },
+    {
+      "event_id": 100,
+      "timestamp": "2026-10-12T12:40:00",
+      "event_type": "malware_detected",
+      "severity": "high",
+      "host": "ws-117",
+      "source_ip": "10.10.8.51",
+      "username": "emma",
+      "details": {
+        "family": "RedFox",
+        "action": "quarantined"
+      }
+    },
+    {
+      "event_id": 101,
+      "timestamp": "2026-10-12T12:47:00",
+      "event_type": "malware_detected",
+      "severity": "high",
+      "host": "ws-117",
+      "source_ip": "10.10.8.51",
+      "username": "emma",
+      "details": {
+        "family": "ExampleLoader",
+        "action": "blocked"
+      }
+    },
+    {
+      "event_id": 42,
+      "timestamp": "2026-10-12T12:51:03",
+      "event_type": "login_success",
+      "severity": "low",
+      "host": "ws-117",
+      "source_ip": "192.168.20.15",
+      "username": "david",
+      "details": {
+        "auth_method": "password"
+      }
+    },
+    {
+      "event_id": 46,
+      "timestamp": "2026-10-12T12:51:15",
+      "event_type": "login_success",
+      "severity": "low",
+      "host": "db01",
+      "source_ip": "10.10.7.12",
+      "username": "bo",
+      "details": {
+        "auth_method": "mfa"
+      }
+    },
+    {
+      "event_id": 102,
+      "timestamp": "2026-10-12T12:54:00",
+      "event_type": "malware_detected",
+      "severity": "high",
+      "host": "ws-117",
+      "source_ip": "10.10.8.51",
+      "username": "emma",
+      "details": {
+        "family": "RedFox",
+        "action": "quarantined"
+      }
+    },
+    {
+      "event_id": 103,
+      "timestamp": "2026-10-12T13:01:00",
+      "event_type": "malware_detected",
+      "severity": "high",
+      "host": "ws-117",
+      "source_ip": "10.10.8.51",
+      "username": "emma",
+      "details": {
+        "family": "RedFox",
+        "action": "blocked"
+      }
+    },
+    {
+      "event_id": 12,
+      "timestamp": "2026-10-12T13:02:53",
+      "event_type": "web_request",
+      "severity": "info",
+      "host": "web02",
+      "source_ip": "10.10.4.34",
+      "username": "anna",
+      "details": {
+        "path": "/",
+        "status": 200
+      }
+    },
+    {
+      "event_id": 104,
+      "timestamp": "2026-10-12T13:08:00",
+      "event_type": "malware_detected",
+      "severity": "high",
+      "host": "ws-117",
+      "source_ip": "10.10.8.51",
+      "username": "emma",
+      "details": {
+        "family": "RedFox",
+        "action": "blocked"
+      }
+    },
+    {
+      "event_id": 105,
+      "timestamp": "2026-10-12T13:15:00",
+      "event_type": "malware_detected",
+      "severity": "high",
+      "host": "ws-117",
+      "source_ip": "10.10.8.51",
+      "username": "emma",
+      "details": {
+        "family": "RedFox",
+        "action": "blocked"
+      }
+    },
+    {
+      "event_id": 6,
+      "timestamp": "2026-10-12T13:22:38",
+      "event_type": "login_success",
+      "severity": "low",
+      "host": "vpn01",
+      "source_ip": "10.10.8.51",
+      "username": "anna",
+      "details": {
+        "auth_method": "password"
+      }
+    },
+    {
+      "event_id": 65,
+      "timestamp": "2026-10-12T13:23:46",
+      "event_type": "web_request",
+      "severity": "info",
+      "host": "web02",
+      "source_ip": "192.168.20.15",
+      "username": "david",
+      "details": {
+        "path": "/",
+        "status": 200
+      }
+    },
+    {
+      "event_id": 63,
+      "timestamp": "2026-10-12T13:29:41",
+      "event_type": "web_request",
+      "severity": "info",
+      "host": "web01",
+      "source_ip": "192.168.20.15",
+      "username": "felix",
+      "details": {
+        "path": "/",
+        "status": 200
+      }
+    },
+    {
+      "event_id": 106,
+      "timestamp": "2026-10-12T13:30:00",
+      "event_type": "file_access",
+      "severity": "medium",
+      "host": "files01",
+      "source_ip": "10.10.4.34",
+      "username": "service_backup",
+      "details": {
+        "path": "/config/.env",
+        "action": "read"
+      }
+    },
+    {
+      "event_id": 33,
+      "timestamp": "2026-10-12T13:32:27",
+      "event_type": "file_access",
+      "severity": "low",
+      "host": "ws-104",
+      "source_ip": "10.10.4.21",
+      "username": "felix",
+      "details": {
+        "path": "/home/felix/notes.txt",
+        "action": "read"
+      }
+    },
+    {
+      "event_id": 58,
+      "timestamp": "2026-10-12T13:32:49",
+      "event_type": "web_request",
+      "severity": "info",
+      "host": "web01",
+      "source_ip": "192.168.20.15",
+      "username": "david",
+      "details": {
+        "path": "/products",
+        "status": 200
+      }
+    },
+    {
+      "event_id": 107,
+      "timestamp": "2026-10-12T13:38:00",
+      "event_type": "file_access",
+      "severity": "medium",
+      "host": "files01",
+      "source_ip": "10.10.4.34",
+      "username": "service_backup",
+      "details": {
+        "path": "/backup/finance.zip",
+        "action": "read"
+      }
+    },
+    {
+      "event_id": 67,
+      "timestamp": "2026-10-12T13:42:27",
+      "event_type": "login_success",
+      "severity": "low",
+      "host": "vpn01",
+      "source_ip": "10.10.7.12",
+      "username": "felix",
+      "details": {
+        "auth_method": "mfa"
+      }
+    },
+    {
+      "event_id": 108,
+      "timestamp": "2026-10-12T13:46:00",
+      "event_type": "file_access",
+      "severity": "high",
+      "host": "files01",
+      "source_ip": "10.10.4.34",
+      "username": "service_backup",
+      "details": {
+        "path": "/backup/database.sql",
+        "action": "read"
+      }
+    },
+    {
+      "event_id": 56,
+      "timestamp": "2026-10-12T13:48:37",
+      "event_type": "web_request",
+      "severity": "info",
+      "host": "web02",
+      "source_ip": "10.10.4.34",
+      "username": "david",
+      "details": {
+        "path": "/login",
+        "status": 200
+      }
+    },
+    {
+      "event_id": 118,
+      "timestamp": "2026-10-12T13:52:00",
+      "event_type": "login_failed",
+      "severity": "low",
+      "host": "web01",
+      "source_ip": "10.10.4.21",
+      "username": "david",
+      "details": {
+        "reason": "mistyped_password"
+      }
+    },
+    {
+      "event_id": 27,
+      "timestamp": "2026-10-12T13:52:28",
+      "event_type": "logout",
+      "severity": "info",
+      "host": "web02",
+      "source_ip": "10.10.4.21",
+      "username": "david"
+    },
+    {
+      "event_id": 109,
+      "timestamp": "2026-10-12T13:54:00",
+      "event_type": "file_access",
+      "severity": "medium",
+      "host": "files01",
+      "source_ip": "10.10.4.34",
+      "username": "service_backup",
+      "details": {
+        "path": "/config/.env",
+        "action": "read"
+      }
+    },
+    {
+      "event_id": 7,
+      "timestamp": "2026-10-12T13:57:05",
+      "event_type": "web_request",
+      "severity": "info",
+      "host": "web01",
+      "source_ip": "192.168.20.15",
+      "username": "felix",
+      "details": {
+        "path": "/login",
+        "status": 200
+      }
+    },
+    {
+      "event_id": 9,
+      "timestamp": "2026-10-12T13:59:17",
+      "event_type": "file_access",
+      "severity": "low",
+      "host": "files01",
+      "source_ip": "10.10.4.34",
+      "username": "carla",
+      "details": {
+        "path": "/shared/projects/status.txt",
+        "action": "read"
+      }
+    },
+    {
+      "event_id": 110,
+      "timestamp": "2026-10-12T14:02:00",
+      "event_type": "file_access",
+      "severity": "high",
+      "host": "files01",
+      "source_ip": "10.10.4.34",
+      "username": "service_backup",
+      "details": {
+        "path": "/config/.env",
+        "action": "read"
+      }
+    },
+    {
+      "event_id": 116,
+      "timestamp": "2026-10-12T14:07:00",
+      "event_type": "login_failed",
+      "severity": "low",
+      "host": "ws-104",
+      "source_ip": "10.10.8.51",
+      "username": "david",
+      "details": {
+        "reason": "mistyped_password"
+      }
+    },
+    {
+      "event_id": 111,
+      "timestamp": "2026-10-12T14:15:00",
+      "event_type": "privilege_change",
+      "severity": "medium",
+      "host": "ws-104",
+      "source_ip": "10.10.7.12",
+      "username": "david",
+      "details": {
+        "from": "user",
+        "to": "administrator",
+        "result": "denied"
+      }
+    },
+    {
+      "event_id": 14,
+      "timestamp": "2026-10-12T14:15:56",
+      "event_type": "logout",
+      "severity": "info",
+      "host": "files01",
+      "source_ip": "10.10.4.34",
+      "username": "david"
+    },
+    {
+      "event_id": 16,
+      "timestamp": "2026-10-12T14:18:23",
+      "event_type": "login_success",
+      "severity": "low",
+      "host": "db01",
+      "source_ip": "192.168.20.15",
+      "username": "bo",
+      "details": {
+        "auth_method": "password"
+      }
+    },
+    {
+      "event_id": 13,
+      "timestamp": "2026-10-12T14:20:17",
+      "event_type": "login_success",
+      "severity": "low",
+      "host": "web02",
+      "source_ip": "10.10.7.12",
+      "username": "emma",
+      "details": {
+        "auth_method": "mfa"
+      }
+    },
+    {
+      "event_id": 112,
+      "timestamp": "2026-10-12T14:21:00",
+      "event_type": "privilege_change",
+      "severity": "medium",
+      "host": "ws-104",
+      "source_ip": "10.10.7.12",
+      "username": "david",
+      "details": {
+        "from": "user",
+        "to": "administrator",
+        "result": "denied"
+      }
+    },
+    {
+      "event_id": 113,
+      "timestamp": "2026-10-12T14:27:00",
+      "event_type": "privilege_change",
+      "severity": "medium",
+      "host": "ws-104",
+      "source_ip": "10.10.7.12",
+      "username": "david",
+      "details": {
+        "from": "user",
+        "to": "administrator",
+        "result": "denied"
+      }
+    },
+    {
+      "event_id": 69,
+      "timestamp": "2026-10-12T14:28:20",
+      "event_type": "file_access",
+      "severity": "low",
+      "host": "web02",
+      "source_ip": "192.168.20.15",
+      "username": "carla",
+      "details": {
+        "path": "/shared/hr/policies.pdf",
+        "action": "read"
+      }
+    },
+    {
+      "event_id": 114,
+      "timestamp": "2026-10-12T14:33:00",
+      "event_type": "privilege_change",
+      "severity": "high",
+      "host": "ws-104",
+      "source_ip": "10.10.7.12",
+      "username": "david",
+      "details": {
+        "from": "user",
+        "to": "administrator",
+        "result": "success"
+      }
+    },
+    {
+      "event_id": 70,
+      "timestamp": "2026-10-12T14:40:42",
+      "event_type": "logout",
+      "severity": "info",
+      "host": "vpn01",
+      "source_ip": "10.10.4.34",
+      "username": "felix"
+    },
+    {
+      "event_id": 2,
+      "timestamp": "2026-10-12T14:42:02",
+      "event_type": "login_success",
+      "severity": "low",
+      "host": "vpn01",
+      "source_ip": "10.10.4.34",
+      "username": "bo",
+      "details": {
+        "auth_method": "password"
+      }
+    },
+    {
+      "event_id": 55,
+      "timestamp": "2026-10-12T14:47:35",
+      "event_type": "login_success",
+      "severity": "low",
+      "host": "vpn01",
+      "source_ip": "10.10.4.34",
+      "username": "anna",
+      "details": {
+        "auth_method": "password"
+      }
+    },
+    {
+      "event_id": 61,
+      "timestamp": "2026-10-12T15:31:14",
+      "event_type": "login_success",
+      "severity": "low",
+      "host": "files01",
+      "source_ip": "10.10.7.12",
+      "username": "david",
+      "details": {
+        "auth_method": "password"
+      }
+    },
+    {
+      "event_id": 115,
+      "timestamp": "2026-10-12T15:33:00",
+      "event_type": "login_failed",
+      "severity": "low",
+      "host": "ws-104",
+      "source_ip": "192.168.20.15",
+      "username": "bo",
+      "details": {
+        "reason": "mistyped_password"
+      }
+    },
+    {
+      "event_id": 32,
+      "timestamp": "2026-10-12T15:34:51",
+      "event_type": "file_access",
+      "severity": "low",
+      "host": "ws-104",
+      "source_ip": "10.10.4.21",
+      "username": "anna",
+      "details": {
+        "path": "/shared/projects/status.txt",
+        "action": "read"
+      }
+    },
+    {
+      "event_id": 31,
+      "timestamp": "2026-10-12T15:47:13",
+      "event_type": "web_request",
+      "severity": "info",
+      "host": "web01",
+      "source_ip": "192.168.20.15",
+      "username": "felix",
+      "details": {
+        "path": "/help",
+        "status": 200
+      }
+    },
+    {
+      "event_id": 23,
+      "timestamp": "2026-10-12T15:50:01",
+      "event_type": "login_success",
+      "severity": "low",
+      "host": "web02",
+      "source_ip": "10.10.7.12",
+      "username": "carla",
+      "details": {
+        "auth_method": "password"
+      }
+    },
+    {
+      "event_id": 999,
+      "timestamp": "2026-10-12T16:58:11",
+      "event_type": "usb_device_connected",
+      "severity": "info",
+      "host": "ws-104",
+      "username": "david",
+      "details": {
+        "device": "USB Storage"
+      }
+    }
+  ]
+}
