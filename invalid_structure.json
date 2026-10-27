@@ -1,0 +1,4 @@
+{
+    "event_type": "login_failed",
+    "username": "admin"
+}
