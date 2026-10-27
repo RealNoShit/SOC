@@ -51,9 +51,9 @@ def count_event_types(events):
 
 
 def high_severity_events(events):
-    return [event for event in events if normalize_event_type(event) == "high_severity"]
+    return [event for event in events if normalize_severity(event) == "high"]
 
-###
+
 def failed_logins_by_ip(events):
     counts = {}
     for event in events:
@@ -93,8 +93,47 @@ def high_severity_by_host_system(events):
 def detect_suspicious_ip(events, threshold=5):
     """Detect IPs with failed login attempts exceeding a threshold."""
     failed_ips = failed_logins_by_ip(events)
-    suspicious_ips = {ip: count for ip, count in failed_ips.items() if count > threshold}
+    suspicious_ips = {ip: count for ip, count in failed_ips.items() if count > threshold and ip not in ["unknown", "invalid_ip"]
+                      }
     return suspicious_ips
+
+
+
+def test_suspicious_ip_detection():
+    events = (
+        [{"event_type": "login_failed", "source_ip": "192.168.1.10"}] * 12
+        + [{"event_type": "login_failed", "source_ip": "not-an-ip"}] * 15
+        + [{"event_type": "login_failed", "source_ip": None}] * 20
+    )
+
+    result = detect_suspicious_ip(events, threshold=10)
+
+    assert result == {"192.168.1.10": 12}
+
+    print("Suspicious IP detection test passed!")
+
+def test_normalize_ip():
+    assert normalize_ip({"source_ip": "192.168.1.10"}) == "192.168.1.10"
+    assert normalize_ip({"source_ip": "not-an-ip"}) == "invalid_ip"
+    assert normalize_ip({"source_ip": None}) == "unknown"
+    assert normalize_ip({}) == "unknown"
+
+    print("IP normalization tests passed!")
+
+def test_event_analysis():
+    events = [
+        {"event_type": "login_failed", "severity": "high"},
+        {"event_type": "login-failed", "severity": "HIGH"},
+        {"event_type": "LOGIN_FAILED", "severity": " low "}
+    ]
+
+    event_counts = count_event_types(events)
+    high_events = high_severity_events(events)
+
+    assert event_counts["login_failed"] == 3
+    assert len(high_events) == 2
+
+    print("Event analysis test passed!")
 
 def main():
     filename = input("Enter JSON filename: ").strip() or "security_events.json"
@@ -158,9 +197,7 @@ def main():
 
 
 if __name__ == "__main__":
-    print(normalize_ip({"source_ip": "192.168.1.10"}))
-    print(normalize_ip({"source_ip": "not-an-ip"}))
-    print(normalize_ip({"source_ip": None}))
-    print(normalize_ip({}))
-    
+    test_normalize_ip()
+    test_suspicious_ip_detection()
+    test_event_analysis()
     main()
