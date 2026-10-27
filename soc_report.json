@@ -1,6 +1,6 @@
 {
     "total_events": 120,
-    "high_severity_count": 9,
+    "high_severity_count": 0,
     "event_types": {
         "web_request": 26,
         "file_access": 23,
