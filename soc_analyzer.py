@@ -52,6 +52,21 @@ def high_severity_by_ip(events):
             counts[ip] = counts.get(ip, 0) + 1
     return counts
 
+def high_severity_by_host_system(events):
+    """Return high severity event counts keyed by host system."""
+    counts = {}
+    for event in events:
+        if str(event.get("severity", "")).lower() == "high":
+            host = event.get("host") or "Unknown"
+            counts[host] = counts.get(host, 0) + 1
+    return counts
+
+def detect_suspicious_ip(events, threshold=5):
+    """Detect IPs with failed login attempts exceeding a threshold."""
+    failed_ips = failed_logins_by_ip(events)
+    suspicious_ips = {ip: count for ip, count in failed_ips.items() if count > threshold}
+    return suspicious_ips
+
 def main():
     filename = Path(__file__).with_name("security_events.json")
     try:
@@ -79,6 +94,24 @@ def main():
     print("\nHigh severity events by source IP:")
     for ip, count in sorted(high_severity_by_ip(events).items(), key=lambda item: -item[1]):
         print(f"  {ip}: {count}")
+
+    print("\nHigh severity events by host system:")
+    for host, count in sorted(high_severity_by_host_system(events).items(), key=lambda item: -item[1]):
+        print(f"  {host}: {count}")
+
+    failed_ips = failed_logins_by_ip(events)
+    suspicious_ips = detect_suspicious_ip(events, threshold=5)
+
+    if failed_ips:
+        top_ip = max(failed_ips, key=failed_ips.get)
+
+        print("\nIP with most failed logins:")
+        print(f"  {top_ip}: {failed_ips[top_ip]}")
+
+    if suspicious_ips:
+        print("\nSuspicious IPs:")
+        for ip, count in sorted(suspicious_ips.items(), key=lambda item: -item[1]):
+            print(f"  {ip}: {count}")
 
 if __name__ == "__main__":
     main()
