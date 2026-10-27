@@ -117,5 +117,19 @@ def main():
         for ip, count in sorted(suspicious_ips.items(), key=lambda item: -item[1]):
             print(f"  {ip}: {count}")
 
+
+    # Run Last
+    report = {
+    "total_events": len(events),
+    "high_severity_count": len(high_severity_events(events)),
+    "event_types": count_event_types(events),
+    "failed_logins_by_ip": failed_logins_by_ip(events),
+    "suspicious_ips": detect_suspicious_ip(events)
+    }
+    with open("soc_report.json", "w", encoding="utf-8") as file:
+            json.dump(report, file, indent=4)
+    print("\nReport saved to soc_report.json")
+
+
 if __name__ == "__main__":
     main()
