@@ -1,4 +1,5 @@
 """Sentinel SOC: first-stage offline event analyzer."""
+from fileinput import filename
 import json
 from pathlib import Path
 
@@ -68,12 +69,15 @@ def detect_suspicious_ip(events, threshold=5):
     return suspicious_ips
 
 def main():
-    filename = Path(__file__).with_name("security_events.json")
-    try:
-        events = load_events(filename)
-    except (OSError, json.JSONDecodeError, KeyError, ValueError) as error:
-        print(f"Could not load dataset: {error}")
-        return
+    ##filename = Path(__file__).with_name("security_events.json")
+    # try:
+    #     events = load_events(filename)
+    # except (OSError, json.JSONDecodeError, KeyError, ValueError) as error:
+    #     print(f"Could not load dataset: {error}")
+    #     return
+    filename = input("Enter JSON filename: ").strip() or "security_events.json"
+    events = load_events(filename) 
+
 
     print("\n=== SENTINEL SOC OVERVIEW ===")
     print(f"Total events: {len(events)}")
@@ -100,7 +104,7 @@ def main():
         print(f"  {host}: {count}")
 
     failed_ips = failed_logins_by_ip(events)
-    suspicious_ips = detect_suspicious_ip(events, threshold=5)
+    suspicious_ips = detect_suspicious_ip(events)
 
     if failed_ips:
         top_ip = max(failed_ips, key=failed_ips.get)
