@@ -1,6 +1,6 @@
 {
-    "total_events": 120,
-    "high_severity_count": 0,
+    "total_events": 121,
+    "high_severity_count": 10,
     "event_types": {
         "web_request": 26,
         "file_access": 23,
@@ -8,18 +8,21 @@
         "logout": 7,
         "login_failed": 35,
         "malware_detected": 6,
-        "privilege_change": 4
+        "privilege_change": 4,
+        "usb_device_connected": 1
     },
     "failed_logins_by_ip": {
-        "10.10.4.34": 2,
-        "185.23.44.17": 22,
+        "unknown": 2,
+        "185.23.44.17": 20,
         "192.168.20.15": 2,
+        "invalid_ip": 1,
+        "10.10.4.34": 1,
         "203.0.113.77": 7,
         "10.10.4.21": 1,
         "10.10.8.51": 1
     },
     "suspicious_ips": {
-        "185.23.44.17": 22,
+        "185.23.44.17": 20,
         "203.0.113.77": 7
     }
 }
