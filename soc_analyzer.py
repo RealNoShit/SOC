@@ -5,31 +5,49 @@ from pathlib import Path
 
 
 def load_events(filename):
-    """Read a JSON dataset and return its list of security events."""
     with open(filename, "r", encoding="utf-8") as file:
         data = json.load(file)
-    events = data["events"]
-    if not isinstance(events, list) or not all(isinstance(e, dict) for e in events):
-        raise ValueError("'events' must be a list of objects")
-    return events
+
+    # If the JSON contains an "events" dictionary wrapper
+    if isinstance(data, dict):
+        data = data.get("events")
+
+    # Validate that we now have a list
+    if not isinstance(data, list):
+        raise ValueError("Dataset must contain a list of events.")
+
+    # Validate each event
+    for index, event in enumerate(data):
+        if not isinstance(event, dict):
+            raise ValueError(f"Event {index} must be a dictionary.")
+
+    return data
+
+def normalize_event_type(event):
+    event_type = event.get("event_type") or "unknown"
+    return str(event_type).strip().lower().replace("-", "_")
+
+def normalize_severity(event):
+    severity = event.get("severity") or "unknown"
+    return str(severity).strip().lower()
 
 
 def count_event_types(events):
     counts = {}
     for event in events:
-        event_type = event.get("event_type") or "unknown"
+        event_type = normalize_event_type(event)
         counts[event_type] = counts.get(event_type, 0) + 1
     return counts
 
 
 def high_severity_events(events):
-    return [event for event in events if str(event.get("severity", "")).lower() == "high"]
+    return [event for event in events if normalize_event_type(event) == "high_severity"]
 
 
 def failed_logins_by_ip(events):
     counts = {}
     for event in events:
-        if str(event.get("event_type", "")).replace("-", "_").lower() == "login_failed":
+        if normalize_event_type(event) == "login_failed":
             ip = event.get("source_ip") or "Unknown"
             counts[ip] = counts.get(ip, 0) + 1
     return counts
@@ -38,7 +56,7 @@ def usernames_with_failed_logins(events):
     """Return failed login counts keyed by username."""
     counts = {}
     for event in events:
-        if str(event.get("event_type", "")).replace("-", "_").lower() == "login_failed":
+        if normalize_event_type(event) == "login_failed":
             username = event.get("username")
             if username:
                 counts[username] = counts.get(username, 0) + 1
@@ -48,7 +66,7 @@ def high_severity_by_ip(events):
     """Return high severity event counts keyed by source IP."""
     counts = {}
     for event in events:
-        if str(event.get("severity", "")).lower() == "high":
+        if normalize_severity(event) == "high":
             ip = event.get("source_ip") or "Unknown"
             counts[ip] = counts.get(ip, 0) + 1
     return counts
@@ -57,7 +75,7 @@ def high_severity_by_host_system(events):
     """Return high severity event counts keyed by host system."""
     counts = {}
     for event in events:
-        if str(event.get("severity", "")).lower() == "high":
+        if normalize_severity(event) == "high":
             host = event.get("host") or "Unknown"
             counts[host] = counts.get(host, 0) + 1
     return counts
@@ -69,16 +87,10 @@ def detect_suspicious_ip(events, threshold=5):
     return suspicious_ips
 
 def main():
-    ##filename = Path(__file__).with_name("security_events.json")
-    # try:
-    #     events = load_events(filename)
-    # except (OSError, json.JSONDecodeError, KeyError, ValueError) as error:
-    #     print(f"Could not load dataset: {error}")
-    #     return
     filename = input("Enter JSON filename: ").strip() or "security_events.json"
     try:
         events = load_events(filename)
-    except (OSError, json.JSONDecodeError) as error:
+    except (OSError, json.JSONDecodeError, ValueError) as error:
         print(f"Could not load dataset: {error}")
         return 
 
