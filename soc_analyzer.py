@@ -2,6 +2,7 @@
 from fileinput import filename
 import json
 from pathlib import Path
+import ipaddress
 
 
 def load_events(filename):
@@ -31,6 +32,15 @@ def normalize_severity(event):
     severity = event.get("severity") or "unknown"
     return str(severity).strip().lower()
 
+def normalize_ip(event):
+    ip = event.get("source_ip")
+    if not ip:
+        return "unknown"
+    try:
+        return str(ipaddress.ip_address(str(ip).strip()))
+    except ValueError:
+        return "invalid_ip"
+
 
 def count_event_types(events):
     counts = {}
@@ -43,12 +53,12 @@ def count_event_types(events):
 def high_severity_events(events):
     return [event for event in events if normalize_event_type(event) == "high_severity"]
 
-
+###
 def failed_logins_by_ip(events):
     counts = {}
     for event in events:
         if normalize_event_type(event) == "login_failed":
-            ip = event.get("source_ip") or "Unknown"
+            ip = normalize_ip(event)
             counts[ip] = counts.get(ip, 0) + 1
     return counts
 
@@ -67,7 +77,7 @@ def high_severity_by_ip(events):
     counts = {}
     for event in events:
         if normalize_severity(event) == "high":
-            ip = event.get("source_ip") or "Unknown"
+            ip = normalize_ip(event)
             counts[ip] = counts.get(ip, 0) + 1
     return counts
 
@@ -148,4 +158,9 @@ def main():
 
 
 if __name__ == "__main__":
+    print(normalize_ip({"source_ip": "192.168.1.10"}))
+    print(normalize_ip({"source_ip": "not-an-ip"}))
+    print(normalize_ip({"source_ip": None}))
+    print(normalize_ip({}))
+    
     main()
