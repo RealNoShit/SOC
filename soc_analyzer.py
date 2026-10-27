@@ -43,6 +43,14 @@ def usernames_with_failed_logins(events):
                 counts[username] = counts.get(username, 0) + 1
     return counts
 
+def high_severity_by_ip(events):
+    """Return high severity event counts keyed by source IP."""
+    counts = {}
+    for event in events:
+        if str(event.get("severity", "")).lower() == "high":
+            ip = event.get("source_ip") or "Unknown"
+            counts[ip] = counts.get(ip, 0) + 1
+    return counts
 
 def main():
     filename = Path(__file__).with_name("security_events.json")
@@ -67,6 +75,10 @@ def main():
         usernames_with_failed_logins(events).items(), key=lambda item: -item[1]
     ):
         print(f"  {username}: {count}")
+
+    print("\nHigh severity events by source IP:")
+    for ip, count in sorted(high_severity_by_ip(events).items(), key=lambda item: -item[1]):
+        print(f"  {ip}: {count}")
 
 if __name__ == "__main__":
     main()
