@@ -76,7 +76,11 @@ def main():
     #     print(f"Could not load dataset: {error}")
     #     return
     filename = input("Enter JSON filename: ").strip() or "security_events.json"
-    events = load_events(filename) 
+    try:
+        events = load_events(filename)
+    except (OSError, json.JSONDecodeError) as error:
+        print(f"Could not load dataset: {error}")
+        return 
 
 
     print("\n=== SENTINEL SOC OVERVIEW ===")
