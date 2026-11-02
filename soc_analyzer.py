@@ -105,11 +105,11 @@ def lookup_ip(ip):
     url = "https://ipwho.is/" + ip
     try:
         response = requests.get(url, timeout=10)
-    except requests.RequestException as e:
-        print("Network error:", e)
-        return
-
-    print("HTTP status:", response.status_code)
+    except requests.RequestException as error:
+        return {
+            "status": "network_error",
+            "reason": str(error)
+        }
 
     data = response.json()
     if data.get("success"):
