@@ -4,6 +4,9 @@ import json
 from pathlib import Path
 import ipaddress
 
+import requests
+
+
 
 def load_events(filename):
     with open(filename, "r", encoding="utf-8") as file:
@@ -96,6 +99,29 @@ def detect_suspicious_ip(events, threshold=5):
     suspicious_ips = {ip: count for ip, count in failed_ips.items() if count > threshold and ip not in ["unknown", "invalid_ip"]
                       }
     return suspicious_ips
+
+
+def lookup_ip(ip):
+    url = "https://ipwho.is/" + ip
+    try:
+        response = requests.get(url, timeout=10)
+    except requests.RequestException as e:
+        print("Network error:", e)
+        return
+
+    print("HTTP status:", response.status_code)
+
+    data = response.json()
+    if data.get("success"):
+        print("IP address:", data.get("ip"))
+        print("Country:", data.get("country"))
+        print("Region:", data.get("region"))
+        print("City:", data.get("city"))
+        print("Organization:", data.get("connection", {}).get("org"))
+    else:
+        print("IP Lookup Failed")
+        print("Reason:", data.get("message"))
+
 
 
 # Test functions for the SOC analyzer
@@ -198,8 +224,11 @@ def main():
 
 
 if __name__ == "__main__":
-   # test_normalize_ip()
-   # test_suspicious_ip_detection()
-   # test_event_analysis()
+    # test_normalize_ip()
+    # test_suspicious_ip_detection()
+    # test_event_analysis()
+    # lookup_ip("8.8.8.8")
+    ip = input("Enter an IP address to look up: ").strip()
+    lookup_ip(ip)
 
     main()
