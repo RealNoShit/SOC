@@ -3,7 +3,7 @@ from fileinput import filename
 import json
 from pathlib import Path
 import ipaddress
-
+import sqlite3
 import requests
 
 
@@ -152,6 +152,27 @@ def hosts_targeted_by_ip(events, target_ip):
 
     return sorted(hosts)
 
+def connect_database():
+    connection = sqlite3.connect("soc_alerts.db")
+    return connection
+
+def alert_exists(connection, ip, description):
+    cursor = connection.cursor()
+
+    cursor.execute(
+        """
+        SELECT id
+        FROM alerts
+        WHERE source_ip = ?
+          AND description = ?
+          AND status IN ('new', 'investigating')
+        LIMIT 1
+        """,
+        (ip, description)
+    )
+
+    return cursor.fetchone() is not None
+
 # Test functions for the SOC analyzer
 
 # def test_suspicious_ip_detection():
@@ -198,7 +219,17 @@ def main():
         print(f"Could not load dataset: {error}")
         return 
 
+    connection = connect_database()
 
+    result = alert_exists(
+        connection,
+        "185.23.44.17",
+        "Repeated failed login attempts"
+    )
+
+    print("Alert already exists:", result)
+
+    connection.close()
 
     print("\n=== SENTINEL SOC OVERVIEW ===")
     print(f"Total events: {len(events)}")
@@ -255,6 +286,18 @@ def main():
             print(f"IP address: {ip} has {count} failed login attempts.")
             print(f"Usernames targeted by {ip}: {', '.join(usernames) or "unknown"}")
             print(f"Hosts targeted by {ip}: {', '.join(hosts) or "unknown"}")
+
+
+    connection = connect_database()
+    cursor = connection.cursor()
+
+    cursor.execute("PRAGMA table_info(alerts)")
+    columns = cursor.fetchall()
+
+    for column in columns:
+        print(column)
+
+    connection.close()
 
 
     # Run Last

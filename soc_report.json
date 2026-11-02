@@ -35,8 +35,11 @@
                 "vpn01"
             ],
             "ip_intelligence": {
-                "status": "network_error",
-                "reason": "HTTPSConnectionPool(host='127.0.0.1', port=1): Max retries exceeded with url: /185.23.44.17 (Caused by NewConnectionError(\"HTTPSConnection(host='127.0.0.1', port=1): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it\"))"
+                "ip": "185.23.44.17",
+                "country": "Poland",
+                "region": "Silesian Voivodeship",
+                "city": "Tarnowskie Gory",
+                "organization": "Biznes Swiatlowodem Sp. z o.o"
             }
         },
         {
@@ -49,8 +52,8 @@
                 "web01"
             ],
             "ip_intelligence": {
-                "status": "network_error",
-                "reason": "HTTPSConnectionPool(host='127.0.0.1', port=1): Max retries exceeded with url: /203.0.113.77 (Caused by NewConnectionError(\"HTTPSConnection(host='127.0.0.1', port=1): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it\"))"
+                "status": "failed",
+                "reason": "Reserved range"
             }
         }
     ]
