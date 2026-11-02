@@ -113,16 +113,44 @@ def lookup_ip(ip):
 
     data = response.json()
     if data.get("success"):
-        print("IP address:", data.get("ip"))
-        print("Country:", data.get("country"))
-        print("Region:", data.get("region"))
-        print("City:", data.get("city"))
-        print("Organization:", data.get("connection", {}).get("org"))
+        return {
+            "ip": data.get("ip"),
+            "country": data.get("country"),
+            "region": data.get("region"),
+            "city": data.get("city"),
+            "organization": data.get("connection", {}).get("org")
+        }
     else:
-        print("IP Lookup Failed")
-        print("Reason:", data.get("message"))
+        return { 
+            "status": "failed",
+            "reason": data.get("message", "Unknown error")
+        }
 
+def usernames_targeted_by_ip(events, target_ip):
+    usernames = set()
 
+    for event in events:
+        if normalize_ip(event) == target_ip:
+            if normalize_event_type(event) == "login_failed":
+                username = event.get("username")
+
+                if username:
+                    usernames.add(username)
+
+    return sorted(usernames)
+
+def hosts_targeted_by_ip(events, target_ip):
+    hosts = set()
+
+    for event in events:
+        if normalize_ip(event) == target_ip:
+            if normalize_event_type(event) == "login_failed":
+                host = event.get("host")
+
+                if host:
+                    hosts.add(host)
+
+    return sorted(hosts)
 
 # Test functions for the SOC analyzer
 
@@ -171,6 +199,7 @@ def main():
         return 
 
 
+
     print("\n=== SENTINEL SOC OVERVIEW ===")
     print(f"Total events: {len(events)}")
     print(f"High severity events: {len(high_severity_events(events))}")
@@ -204,10 +233,28 @@ def main():
         print("\nIP with most failed logins:")
         print(f"  {top_ip}: {failed_ips[top_ip]}")
 
+
+    investigations = []  
     if suspicious_ips:
-        print("\nSuspicious IPs:")
+        print("\n=== Suspicious IP Investigation ===")
+
         for ip, count in sorted(suspicious_ips.items(), key=lambda item: -item[1]):
-            print(f"  {ip}: {count}")
+            usernames = usernames_targeted_by_ip(events, ip)
+            hosts = hosts_targeted_by_ip(events, ip)
+            ip_info = lookup_ip(ip)
+
+            investigation = {
+                "ip": ip,
+                "failed_login_attempts": count,
+                "usernames_targeted": usernames,
+                "hosts_targeted": hosts,
+                "ip_intelligence": ip_info
+            }
+            investigations.append(investigation)
+
+            print(f"IP address: {ip} has {count} failed login attempts.")
+            print(f"Usernames targeted by {ip}: {', '.join(usernames) or "unknown"}")
+            print(f"Hosts targeted by {ip}: {', '.join(hosts) or "unknown"}")
 
 
     # Run Last
@@ -216,7 +263,8 @@ def main():
     "high_severity_count": len(high_severity_events(events)),
     "event_types": count_event_types(events),
     "failed_logins_by_ip": failed_logins_by_ip(events),
-    "suspicious_ips": detect_suspicious_ip(events)
+    "suspicious_ips": detect_suspicious_ip(events),
+    "investigations": investigations
     }
     with open("soc_report.json", "w", encoding="utf-8") as file:
             json.dump(report, file, indent=4)
