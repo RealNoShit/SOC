@@ -5,6 +5,7 @@ from pathlib import Path
 import ipaddress
 import sqlite3
 import requests
+from datetime import datetime
 
 
 
@@ -173,43 +174,68 @@ def alert_exists(connection, ip, description):
 
     return cursor.fetchone() is not None
 
-# Test functions for the SOC analyzer
+def create_alert(connection, ip, description, severity):
+    cursor = connection.cursor()
 
-# def test_suspicious_ip_detection():
-#     events = (
-#         [{"event_type": "login_failed", "source_ip": "192.168.1.10"}] * 12
-#         + [{"event_type": "login_failed", "source_ip": "not-an-ip"}] * 15
-#         + [{"event_type": "login_failed", "source_ip": None}] * 20
-#     )
+    cursor.execute(
+        """
+        INSERT INTO alerts (created_at, source_ip, description, severity, status)
+        VALUES (?, ?, ?, ?, ?)
+        """,
+        (
+            datetime.now().isoformat(timespec="seconds"),
+            ip,
+            description,
+            severity,
+            "new"
+        )
+    )
 
-#     result = detect_suspicious_ip(events, threshold=10)
+    connection.commit()
+    return cursor.lastrowid
 
-#     assert result == {"192.168.1.10": 12}
+def get_active_alerts(connection):
+    cursor = connection.cursor()
 
-#     print("Suspicious IP detection test passed!")
+    cursor.execute("""
+        SELECT id, source_ip, description, severity, status
+        FROM alerts
+        WHERE status IN ('new', 'investigating')
+        ORDER BY id DESC
+    """)
 
-# def test_normalize_ip():
-#     assert normalize_ip({"source_ip": "192.168.1.10"}) == "192.168.1.10"
-#     assert normalize_ip({"source_ip": "not-an-ip"}) == "invalid_ip"
-#     assert normalize_ip({"source_ip": None}) == "unknown"
-#     assert normalize_ip({}) == "unknown"
+    return cursor.fetchall()
 
-#     print("IP normalization tests passed!")
+def update_alert_status(connection, alert_id, new_status):
+    cursor = connection.cursor()
 
-# def test_event_analysis():
-#     events = [
-#         {"event_type": "login_failed", "severity": "high"},
-#         {"event_type": "login-failed", "severity": "HIGH"},
-#         {"event_type": "LOGIN_FAILED", "severity": " low "}
-#     ]
+    cursor.execute("""
+        UPDATE alerts
+        SET status = ?
+        WHERE id = ?
+    """, (new_status, alert_id))
 
-#     event_counts = count_event_types(events)
-#     high_events = high_severity_events(events)
+    connection.commit()
+    return cursor.rowcount
 
-#     assert event_counts["login_failed"] == 3
-#     assert len(high_events) == 2
+def delete_alert(connection, alert_id):
+    cursor = connection.cursor()
 
-#     print("Event analysis test passed!")
+    cursor.execute("""
+        DELETE FROM alerts
+        WHERE id = ?
+    """, (alert_id,))
+
+    connection.commit()
+    return cursor.rowcount
+
+#
+#
+#
+#
+#
+#
+#
 
 def main():
     filename = input("Enter JSON filename: ").strip() or "security_events.json"
@@ -219,17 +245,6 @@ def main():
         print(f"Could not load dataset: {error}")
         return 
 
-    connection = connect_database()
-
-    result = alert_exists(
-        connection,
-        "185.23.44.17",
-        "Repeated failed login attempts"
-    )
-
-    print("Alert already exists:", result)
-
-    connection.close()
 
     print("\n=== SENTINEL SOC OVERVIEW ===")
     print(f"Total events: {len(events)}")
@@ -268,6 +283,7 @@ def main():
     investigations = []  
     if suspicious_ips:
         print("\n=== Suspicious IP Investigation ===")
+        connection = connect_database()
 
         for ip, count in sorted(suspicious_ips.items(), key=lambda item: -item[1]):
             usernames = usernames_targeted_by_ip(events, ip)
@@ -287,18 +303,47 @@ def main():
             print(f"Usernames targeted by {ip}: {', '.join(usernames) or "unknown"}")
             print(f"Hosts targeted by {ip}: {', '.join(hosts) or "unknown"}")
 
+            description = f"Repeated failed login attempts ({count} attempts)"
+
+            if alert_exists(connection, ip, description):
+                print(f"Existing alert found for {ip}. Skipping.")
+            else:
+                alert_id = create_alert(connection, ip, description, "high")
+                print(f"Created alert #{alert_id} for {ip}.")
+        connection.close()
+
 
     connection = connect_database()
-    cursor = connection.cursor()
-
-    cursor.execute("PRAGMA table_info(alerts)")
-    columns = cursor.fetchall()
-
-    for column in columns:
-        print(column)
-
+    active_alerts = get_active_alerts(connection)
     connection.close()
 
+    print("\n=== Active SOC Alerts ===")
+
+    for alert in active_alerts:
+        alert_id, ip, description, severity, status = alert
+
+        print(f"\nAlert #{alert_id}")
+        print(f"Source IP: {ip}")
+        print(f"Description: {description}")
+        print(f"Severity: {severity.upper()}")
+        print(f"Status: {status}")
+        print("-" * 40)
+
+    # connection = connect_database()
+
+    # updated_rows = update_alert_status(connection, 5, "investigating")
+
+    # print(f"Updated {updated_rows} alert(s).")
+
+    # connection.close()
+
+    # connection = connect_database()
+
+    # for alert_id in [4, 5]:
+    #     deleted_rows = delete_alert(connection, alert_id)
+    #     print(f"Alert #{alert_id}: {deleted_rows} row(s) deleted.")
+
+    # connection.close()
 
     # Run Last
     report = {
