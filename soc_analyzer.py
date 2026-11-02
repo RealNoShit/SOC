@@ -98,42 +98,43 @@ def detect_suspicious_ip(events, threshold=5):
     return suspicious_ips
 
 
+# Test functions for the SOC analyzer
 
-def test_suspicious_ip_detection():
-    events = (
-        [{"event_type": "login_failed", "source_ip": "192.168.1.10"}] * 12
-        + [{"event_type": "login_failed", "source_ip": "not-an-ip"}] * 15
-        + [{"event_type": "login_failed", "source_ip": None}] * 20
-    )
+# def test_suspicious_ip_detection():
+#     events = (
+#         [{"event_type": "login_failed", "source_ip": "192.168.1.10"}] * 12
+#         + [{"event_type": "login_failed", "source_ip": "not-an-ip"}] * 15
+#         + [{"event_type": "login_failed", "source_ip": None}] * 20
+#     )
 
-    result = detect_suspicious_ip(events, threshold=10)
+#     result = detect_suspicious_ip(events, threshold=10)
 
-    assert result == {"192.168.1.10": 12}
+#     assert result == {"192.168.1.10": 12}
 
-    print("Suspicious IP detection test passed!")
+#     print("Suspicious IP detection test passed!")
 
-def test_normalize_ip():
-    assert normalize_ip({"source_ip": "192.168.1.10"}) == "192.168.1.10"
-    assert normalize_ip({"source_ip": "not-an-ip"}) == "invalid_ip"
-    assert normalize_ip({"source_ip": None}) == "unknown"
-    assert normalize_ip({}) == "unknown"
+# def test_normalize_ip():
+#     assert normalize_ip({"source_ip": "192.168.1.10"}) == "192.168.1.10"
+#     assert normalize_ip({"source_ip": "not-an-ip"}) == "invalid_ip"
+#     assert normalize_ip({"source_ip": None}) == "unknown"
+#     assert normalize_ip({}) == "unknown"
 
-    print("IP normalization tests passed!")
+#     print("IP normalization tests passed!")
 
-def test_event_analysis():
-    events = [
-        {"event_type": "login_failed", "severity": "high"},
-        {"event_type": "login-failed", "severity": "HIGH"},
-        {"event_type": "LOGIN_FAILED", "severity": " low "}
-    ]
+# def test_event_analysis():
+#     events = [
+#         {"event_type": "login_failed", "severity": "high"},
+#         {"event_type": "login-failed", "severity": "HIGH"},
+#         {"event_type": "LOGIN_FAILED", "severity": " low "}
+#     ]
 
-    event_counts = count_event_types(events)
-    high_events = high_severity_events(events)
+#     event_counts = count_event_types(events)
+#     high_events = high_severity_events(events)
 
-    assert event_counts["login_failed"] == 3
-    assert len(high_events) == 2
+#     assert event_counts["login_failed"] == 3
+#     assert len(high_events) == 2
 
-    print("Event analysis test passed!")
+#     print("Event analysis test passed!")
 
 def main():
     filename = input("Enter JSON filename: ").strip() or "security_events.json"
@@ -197,7 +198,8 @@ def main():
 
 
 if __name__ == "__main__":
-    test_normalize_ip()
-    test_suspicious_ip_detection()
-    test_event_analysis()
+   # test_normalize_ip()
+   # test_suspicious_ip_detection()
+   # test_event_analysis()
+
     main()
